@@ -6,7 +6,7 @@
     
     <title>SOMANSA DPP 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
@@ -56,55 +56,7 @@
         <div class="logo-container">
             <img src="logo.png" alt="SOMANSA Logo">
         </div>
-        
         <h1>SOMANSA DPP 2026</h1>
-        
-
-)을 찾습니다.
-    2. 거기서부터 해당 항목이 끝나는 주석(예: )까지 블록 전체를 선택해서 삭제합니다.
-    3. 다른 모든 항목도 동일한 방법으로 없앨 수 있습니다.
-
-    ---
-    [2] 새로운 항목을 추가하는 방법 (복사 & 붙여넣기)
-    ---
-    예시: '이름'과 '소속' 사이에 '직급' 항목을 새로 추가하고 싶을 때
-    
-    1. 가장 기본이 되는 '이름' 항목 코드를 복사합니다. 
-       (부터 까지)
-    
-    2. 추가하고 싶은 위치에 붙여넣기 합니다.
-    
-    3. 붙여넣은 코드의 내용만 '직급'에 맞게 수정합니다. (총 4곳)
-    
-       ▼ 붙여넣은 코드 (수정 전)
-       <div class="form-group">
-           <label for="nameInput">이름</label>
-           <input type="text" id="nameInput" name="user_name" placeholder="실명을 입력해 주세요" required>
-       </div>
-
-       ▼ 수정 후
-       <div class="form-group">
-           <label for="positionInput">직급</label>                                                    <input type="text" id="positionInput" name="user_position" placeholder="직급을 입력해 주세요" required>   </div>
-
-    (중요!) `name="user_position"` 부분은 구글 시트의 '열 제목'이 되므로, 다른 항목과 겹치지 않는 영어 이름으로 꼭 바꿔주세요!
-
-    ---
-    [3] 기존 항목의 이름(멘트)만 바꾸는 방법
-    ---
-    예시: '휴대전화'를 '연락처'로 바꾸고 싶을 때
-
-    1. 바꾸고 싶은 문구가 있는 곳을 찾습니다. 코드에 `` 표시가 되어 있습니다.
-    2. 태그 안의 글자만 원하는 내용으로 수정하면 됩니다.
-    
-       ▼ 수정 전
-       <label for="phoneInput">휴대전화</label>
-
-       ▼ 수정 후
-       <label for="phoneInput">연락처</label>
-
-==================================================================================================================
--->
-
         <form id="userInfoForm">
             <div class="form-group">
                 <label for="nameInput">이름</label>
