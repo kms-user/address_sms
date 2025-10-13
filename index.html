@@ -6,21 +6,17 @@
     
     <title>SOMANSA DPP 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* ▼▼▼ 2. 전체 디자인 색상 수정 ▼▼▼ */
         :root {
             --navy-deep: #0a192f;
             --accent-blue: #3E84F4;
             --white: #ffffff;
             --border-color: #e0e0e0;
         }
-        /* ▲▲▲ 2. 전체 디자인 색상 수정 ▲▲▲ */
 
-
-        /* --- (여기서부터는 특별한 경우가 아니면 수정하지 않아도 됩니다) --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Noto Sans KR', sans-serif; background-color: var(--navy-deep); padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; line-height: 1.6; }
         .form-container { background-color: var(--white); border-radius: 16px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); padding: 40px 50px; width: 100%; max-width: 700px; }
@@ -29,21 +25,37 @@
         h1 { text-align: center; color: #2c3e50; margin-bottom: 40px; font-weight: 700; font-size: 2rem; letter-spacing: -1px; }
         .form-group { margin-bottom: 24px; }
         .form-group label { display: block; font-weight: 500; color: #495057; margin-bottom: 8px; font-size: 1rem; }
-        .form-group input[type="text"], .form-group input[type="tel"], .form-group input[type="email"] { width: 100%; padding: 14px 16px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 1rem; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
-        .form-group input:focus { border-color: var(--accent-blue); box-shadow: 0 0 0 4px rgba(62, 132, 244, 0.15); outline: none; }
+        .form-group input[type="text"], .form-group input[type="tel"], .form-group input[type="email"], .form-group select { 
+            width: 100%; 
+            padding: 14px 16px; 
+            border: 1px solid var(--border-color); 
+            border-radius: 8px; 
+            font-size: 1rem; 
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            background-color: white;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%236c757d%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22/%3E%3C/svg%3E');
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 0.7em auto;
+        }
+        .form-group input:focus, .form-group select:focus { border-color: var(--accent-blue); box-shadow: 0 0 0 4px rgba(62, 132, 244, 0.15); outline: none; }
         .split-group { display: flex; gap: 15px; }
         .split-group > div { flex: 1; }
         .address-group { display: flex; gap: 10px; }
         .address-group button { flex-shrink: 0; padding: 10px 18px; background-color: #495057; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.95rem; font-weight: 500; transition: background-color 0.2s ease; }
         .address-group button:hover { background-color: #212529; }
         input[readonly] { background-color: #f1f3f5; cursor: default; }
-        .certify-group, .consent-group { margin-top: 30px; padding: 20px; background-color: #f9fafb; border: 1px solid #e9ecef; border-radius: 10px; }
+        .consent-group { margin-top: 30px; padding: 20px; background-color: #f9fafb; border: 1px solid #e9ecef; border-radius: 10px; }
         .check-item { display: flex; align-items: center; gap: 12px; font-size: 1rem; }
         .check-item input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--navy-deep); }
         .check-item label { font-weight: 500; color: #212529; }
         .consent-details { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border-color); font-size: 0.85rem; color: #6c757d; }
         .consent-details h4 { font-size: 0.9rem; color: #495057; margin-bottom: 5px; }
         .consent-details p { margin-bottom: 15px; }
+        select:disabled { background-color: #f1f3f5; color: #999; }
         .submit-btn { width: 100%; padding: 16px; background-color: var(--navy-deep); color: white; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 700; cursor: pointer; margin-top: 35px; transition: background-color 0.2s ease, transform 0.2s ease; }
         .submit-btn:hover:not(:disabled) { background-color: #061A2D; transform: translateY(-2px); }
         .submit-btn:disabled { background-color: #adb5bd; cursor: not-allowed; }
@@ -56,26 +68,38 @@
         <div class="logo-container">
             <img src="logo.png" alt="SOMANSA Logo">
         </div>
+        
         <h1>SOMANSA DPP 2026</h1>
+
         <form id="userInfoForm">
             <div class="form-group">
                 <label for="nameInput">이름</label>
                 <input type="text" id="nameInput" name="user_name" placeholder="실명을 입력해 주세요" required>
             </div>
             <div class="form-group">
-                <label>소속</label>
+                <label>부서</label>
                 <div class="split-group">
-                    <div><input type="text" id="companyInput" name="user_company" placeholder="회사명" required></div>
-                    <div><input type="text" id="departmentInput" name="user_department" placeholder="부서" required></div>
+                    <div>
+                        <select id="dept_main" name="user_dept_main" required>
+                            <option value="">-- 본부/실 선택 --</option>
+                            <option value="경영기획실">경영기획실</option>
+                            <option value="기술E본부">기술E본부</option>
+                            <option value="기술N본부">기술N본부</option>
+                            <option value="연구소">연구소</option>
+                            <option value="영업본부">영업본부</option>
+                            <option value="컨설팅본부">컨설팅본부</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select id="dept_sub" name="user_dept_sub" required disabled>
+                            <option value="">-- 본부/실을 먼저 선택하세요 --</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="phoneInput">휴대전화</label>
                 <input type="tel" id="phoneInput" name="user_phone" placeholder="예: 010-1234-5678" oninput="autoHyphen(this)" maxlength="13" required>
-            </div>
-            <div class="form-group">
-                <label for="emailInput">이메일</label>
-                <input type="email" id="emailInput" name="user_email" placeholder="example@somanasa.com" required>
             </div>
             <div class="form-group">
                 <label>주소 (경품 발송용)</label>
@@ -90,12 +114,6 @@
             <div class="form-group">
                 <input type="text" id="address2" name="address_detail" placeholder="상세 주소 (동, 호수 등)" required>
             </div>
-            <div class="certify-group">
-                <div class="check-item">
-                    <input type="checkbox" id="certifyCheck" name="self_certify" required>
-                    <label for="certifyCheck">본인이 직접 이벤트에 참가하였음을 확인합니다.</label>
-                </div>
-            </div>
             <div class="consent-group">
                 <div class="check-item">
                     <input type="checkbox" id="consentCheck" name="privacy_consent" required>
@@ -103,7 +121,7 @@
                 </div>
                 <div class="consent-details">
                     <h4>1. 수집하는 개인정보 항목</h4>
-                    <p>이름, 소속(회사명, 부서), 연락처(휴대전화, 이메일), 주소(우편번호, 기본주소, 상세주소)</p>
+                    <p>이름, 부서, 연락처(휴대전화), 주소(우편번호, 기본주소, 상세주소)</p>
                     <h4>2. 개인정보의 수집 및 이용 목적</h4>
                     <p>이벤트 참여자 식별, 경품 발송, 행사 관련 안내 및 문의 응대</p>
                     <h4>3. 개인정보의 보유 및 이용 기간</h4>
@@ -118,11 +136,86 @@
 
     <script>
         // ▼▼▼ (매우 중요) 구글 시트 연동 URL ▼▼▼
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw8_jozY0_ANYZzr3dWqjz0LvEnGa0st--CGQ8xuHyrL1N9SGTLhb7KepnkBgTbYiiB/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxblxny4GBbnlaHky4MtLZ1UR7Lw7jUbOhKA5oJ33qapSz0n1lGOqrbm0vzZyrkAM7E/exec';
         // ▲▲▲ (매우 중요) 구글 시트 연동 URL ▲▲▲
 
-
         // --- (여기서부터는 특별한 경우가 아니면 수정하지 않아도 됩니다) ---
+
+        // ▼▼▼ 2단계 부서 선택을 위한 데이터 및 로직 ▼▼▼
+        const departmentData = {
+            '경영기획실': { options: ['마케팅팀', '재무팀', '인사팀', '총무팀', '감사팀'] },
+            '기술E본부': {
+                groups: [
+                    { label: '기술1실', options: ['기술Y팀', '기술H팀', '채널기획2팀'] },
+                    { label: '기술3실', options: ['기술Q팀', '기술W팀', '기술C팀'] },
+                    { label: '기술5실', options: ['기술G팀', '기술O팀', '기술I팀'] }
+                ],
+                options: ['Global Business팀']
+            },
+            '기술N본부': {
+                groups: [
+                    { label: '기술2실', options: ['기술B팀', '기술K팀', '기술V팀', '기술U팀'] },
+                    { label: '기술4실', options: ['기술D팀', '기술R팀', '채널기획1팀'] }
+                ]
+            },
+            '연구소': {
+                groups: [
+                    { label: 'Platform개발실', options: ['Platform1팀', 'Platform2팀', 'UX기획팀', '서버모듈팀'] },
+                    { label: 'Network개발실', options: ['연구혁신팀', '네트워크엔진팀', '비즈니스 프로토콜팀', '엔터프라이즈 프로토콜팀', 'Security Service 팀', 'VDI 클라이언트팀', 'VDI 프론트엔드팀', 'VDI 백엔드팀'] },
+                    { label: 'Endpoint개발실', options: ['EPP1팀', 'EPP2팀', 'Discover1팀', '위협대응엔진팀'] },
+                    { label: '품질혁신실', options: ['QA1팀', 'QA2팀', 'AQA팀', 'VDI팀'] }
+                ],
+                options: ['연구기획팀', 'Robust Appliance팀', '클라우드플랫폼팀', '제품기획파트']
+            },
+            '영업본부': {
+                groups: [
+                    { label: '공공1사업부', options: ['공공1팀', '공공2팀', '공공5팀', '공공6팀'] },
+                    { label: '공공2사업부', options: ['공공TF팀', '공공3팀', '공공4팀'] },
+                    { label: '기업1사업부', options: ['기업1팀', '기업3팀'] },
+                    { label: '기업2사업부', options: ['기업2팀', '기업4팀'] },
+                    { label: '금융사업부', options: ['금융1팀', '금융2팀'] },
+                    { label: '서비스채널사업부', options: ['채널영업팀', '서비스기획팀', 'SC1팀', 'SC2팀'] }
+                ],
+                options: ['공공 채널 활성화 TF', '통신서비스사업실']
+            },
+            '컨설팅본부': { options: ['컨설팅1실', '컨설팅2실'] }
+        };
+
+        const mainDeptSelect = document.getElementById('dept_main');
+        const subDeptSelect = document.getElementById('dept_sub');
+
+        mainDeptSelect.addEventListener('change', function() {
+            const selectedMainDept = this.value;
+            
+            subDeptSelect.innerHTML = '<option value="">-- 팀/실 선택 --</option>';
+            
+            if (selectedMainDept && departmentData[selectedMainDept]) {
+                subDeptSelect.disabled = false;
+                const data = departmentData[selectedMainDept];
+
+                if (data.groups) {
+                    data.groups.forEach(group => {
+                        const optgroup = document.createElement('optgroup');
+                        optgroup.label = `--- ${group.label} ---`;
+                        group.options.forEach(optionText => {
+                            optgroup.appendChild(new Option(optionText, optionText));
+                        });
+                        subDeptSelect.appendChild(optgroup);
+                    });
+                }
+                
+                if (data.options) {
+                    data.options.forEach(optionText => {
+                        subDeptSelect.appendChild(new Option(optionText, optionText));
+                    });
+                }
+            } else {
+                subDeptSelect.innerHTML = '<option value="">-- 본부/실을 먼저 선택하세요 --</option>';
+                subDeptSelect.disabled = true;
+            }
+        });
+        // ▲▲▲ 2단계 부서 선택 로직 끝 ▲▲▲
+
         function findAddress() { new daum.Postcode({ oncomplete: function(data) { document.getElementById('zipCode').value = data.zonecode; document.getElementById('address1').value = data.address; document.getElementById('address2').focus(); }}).open(); }
         function autoHyphen(target) { target.value = target.value.replace(/[^0-9]/g, '').replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");}
         
@@ -139,6 +232,8 @@
                 if (data.result === 'success') { 
                     alert('정상적으로 제출되었습니다. 감사합니다!'); 
                     userForm.reset(); 
+                    subDeptSelect.innerHTML = '<option value="">-- 본부/실을 먼저 선택하세요 --</option>';
+                    subDeptSelect.disabled = true;
                 } else { 
                     throw new Error(data.message || 'Apps Script 내부 오류'); 
                 } 
