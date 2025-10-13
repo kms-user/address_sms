@@ -56,6 +56,7 @@
         .consent-details h4 { font-size: 0.9rem; color: #495057; margin-bottom: 5px; }
         .consent-details p { margin-bottom: 15px; }
         select:disabled { background-color: #f1f3f5; color: #999; }
+        optgroup { font-weight: bold; font-style: normal; color: #0a192f; }
         .submit-btn { width: 100%; padding: 16px; background-color: var(--navy-deep); color: white; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 700; cursor: pointer; margin-top: 35px; transition: background-color 0.2s ease, transform 0.2s ease; }
         .submit-btn:hover:not(:disabled) { background-color: #061A2D; transform: translateY(-2px); }
         .submit-btn:disabled { background-color: #adb5bd; cursor: not-allowed; }
@@ -136,7 +137,7 @@
 
     <script>
         // ▼▼▼ (매우 중요) 구글 시트 연동 URL ▼▼▼
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyYTsmjicO0P0WdLDCA20YyNWbmI-g2a8xUEKTW3599lK2mBBbjnygJLTaJl5qIo4p3/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby4i7AmI-1dx73fWMn0c0BLKNQ7kawsUMg66rDyWzXv2R6ndRzPr1DoZE8IplwubXU0/exec';
         // ▲▲▲ (매우 중요) 구글 시트 연동 URL ▲▲▲
 
         // --- (여기서부터는 특별한 경우가 아니면 수정하지 않아도 됩니다) ---
@@ -193,20 +194,31 @@
                 subDeptSelect.disabled = false;
                 const data = departmentData[selectedMainDept];
 
+                // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+                // ▼▼▼ 이 부분이 수정되었습니다 ▼▼▼
+
+                // 그룹이 있는 경우 (예: 기술1실)
                 if (data.groups) {
                     data.groups.forEach(group => {
+                        const optgroup = document.createElement('optgroup');
+                        optgroup.label = group.label; // '--' 기호 제거
                         group.options.forEach(optionText => {
-                            subDeptSelect.appendChild(new Option(optionText, optionText));
+                            optgroup.appendChild(new Option(optionText, optionText));
                         });
+                        subDeptSelect.appendChild(optgroup);
                     });
                 }
                 
+                // 그룹 없이 팀만 있는 경우
                 if (data.options) {
                     data.options.forEach(optionText => {
                         subDeptSelect.appendChild(new Option(optionText, optionText));
                     });
                 }
 
+                // ▲▲▲ 이 부분이 수정되었습니다 ▲▲▲
+                // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+                
             } else {
                 subDeptSelect.innerHTML = '<option value="">본부/실을 먼저 선택하세요</option>';
                 subDeptSelect.disabled = true;
