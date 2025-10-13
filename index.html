@@ -81,7 +81,7 @@
                 <div class="split-group">
                     <div>
                         <select id="dept_main" name="user_dept_main" required>
-                            <option value=""> 본부/실 선택 </option>
+                            <option value="">본부/실 선택</option>
                             <option value="경영기획실">경영기획실</option>
                             <option value="기술E본부">기술E본부</option>
                             <option value="기술N본부">기술N본부</option>
@@ -92,7 +92,7 @@
                     </div>
                     <div>
                         <select id="dept_sub" name="user_dept_sub" required disabled>
-                            <option value=""> 본부/실을 먼저 선택하세요 </option>
+                            <option value="">본부/실을 먼저 선택하세요</option>
                         </select>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                 <input type="tel" id="phoneInput" name="user_phone" placeholder="예: 010-1234-5678" oninput="autoHyphen(this)" maxlength="13" required>
             </div>
             <div class="form-group">
-                <label>주소 (경품 발송용)</label>
+                <label>주소 (선물 발송용)</label>
                 <div class="address-group">
                     <input type="text" id="zipCode" name="zip_code" placeholder="우편번호" readonly required>
                     <button type="button" onclick="findAddress()">주소 검색</button>
@@ -123,9 +123,9 @@
                     <h4>1. 수집하는 개인정보 항목</h4>
                     <p>이름, 부서, 연락처(휴대전화), 주소(우편번호, 기본주소, 상세주소)</p>
                     <h4>2. 개인정보의 수집 및 이용 목적</h4>
-                    <p>이벤트 참여자 식별, 경품 발송, 행사 관련 안내 및 문의 응대</p>
+                    <p>명절 선물 발송 및 관련 안내</p>
                     <h4>3. 개인정보의 보유 및 이용 기간</h4>
-                    <p>이벤트 종료 및 경품 배송 완료 후 3개월 이내에 안전하게 파기합니다. 단, 관련 법령에 따라 보존할 필요가 있는 경우 해당 법령에서 정한 기간 동안 보관합니다.</p>
+                    <p>선물 배송 완료 후 3개월 이내에 안전하게 파기합니다.</p>
                 </div>
             </div>
             <button type="submit" class="submit-btn">신청하기</button>
@@ -187,7 +187,7 @@
         mainDeptSelect.addEventListener('change', function() {
             const selectedMainDept = this.value;
             
-            subDeptSelect.innerHTML = '<option value=""> 팀/실 선택 </option>';
+            subDeptSelect.innerHTML = '<option value="">팀/실 선택</option>';
             
             if (selectedMainDept && departmentData[selectedMainDept]) {
                 subDeptSelect.disabled = false;
@@ -210,7 +210,7 @@
                     });
                 }
             } else {
-                subDeptSelect.innerHTML = '<option value=""> 본부/실을 먼저 선택하세요 </option>';
+                subDeptSelect.innerHTML = '<option value="">본부/실을 먼저 선택하세요</option>';
                 subDeptSelect.disabled = true;
             }
         });
@@ -232,7 +232,7 @@
                 if (data.result === 'success') { 
                     alert('정상적으로 제출되었습니다. 감사합니다!'); 
                     userForm.reset(); 
-                    subDeptSelect.innerHTML = '<option value="">-- 본부/실을 먼저 선택하세요 --</option>';
+                    subDeptSelect.innerHTML = '<option value="">본부/실을 먼저 선택하세요</option>';
                     subDeptSelect.disabled = true;
                 } else { 
                     throw new Error(data.message || 'Apps Script 내부 오류'); 
@@ -250,7 +250,3 @@
     </script>
 </body>
 </html>
-
-
-
-
