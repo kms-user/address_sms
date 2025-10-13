@@ -81,7 +81,7 @@
                 <div class="split-group">
                     <div>
                         <select id="dept_main" name="user_dept_main" required>
-                            <option value="">본부/실 선택</option>
+                            <option value="">-- 본부/실 선택 --</option>
                             <option value="경영기획실">경영기획실</option>
                             <option value="기술E본부">기술E본부</option>
                             <option value="기술N본부">기술N본부</option>
@@ -92,7 +92,7 @@
                     </div>
                     <div>
                         <select id="dept_sub" name="user_dept_sub" required disabled>
-                            <option value="">본부/실을 먼저 선택하세요</option>
+                            <option value="">-- 본부/실을 먼저 선택하세요 --</option>
                         </select>
                     </div>
                 </div>
@@ -136,7 +136,7 @@
 
     <script>
         // ▼▼▼ (매우 중요) 구글 시트 연동 URL ▼▼▼
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxblxny4GBbnlaHky4MtLZ1UR7Lw7jUbOhKA5oJ33qapSz0n1lGOqrbm0vzZyrkAM7E/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyYTsmjicO0P0WdLDCA20YyNWbmI-g2a8xUEKTW3599lK2mBBbjnygJLTaJl5qIo4p3/exec';
         // ▲▲▲ (매우 중요) 구글 시트 연동 URL ▲▲▲
 
         // --- (여기서부터는 특별한 경우가 아니면 수정하지 않아도 됩니다) ---
@@ -187,7 +187,7 @@
         mainDeptSelect.addEventListener('change', function() {
             const selectedMainDept = this.value;
             
-            subDeptSelect.innerHTML = '<option value="">팀/실 선택</option>';
+            subDeptSelect.innerHTML = '<option value="">-- 팀/실 선택 --</option>';
             
             if (selectedMainDept && departmentData[selectedMainDept]) {
                 subDeptSelect.disabled = false;
@@ -210,11 +210,10 @@
                     });
                 }
             } else {
-                subDeptSelect.innerHTML = '<option value="">본부/실을 먼저 선택하세요</option>';
+                subDeptSelect.innerHTML = '<option value="">-- 본부/실을 먼저 선택하세요 --</option>';
                 subDeptSelect.disabled = true;
             }
         });
-        // ▲▲▲ 2단계 부서 선택 로직 끝 ▲▲▲
 
         function findAddress() { new daum.Postcode({ oncomplete: function(data) { document.getElementById('zipCode').value = data.zonecode; document.getElementById('address1').value = data.address; document.getElementById('address2').focus(); }}).open(); }
         function autoHyphen(target) { target.value = target.value.replace(/[^0-9]/g, '').replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");}
@@ -232,7 +231,7 @@
                 if (data.result === 'success') { 
                     alert('정상적으로 제출되었습니다. 감사합니다!'); 
                     userForm.reset(); 
-                    subDeptSelect.innerHTML = '<option value="">본부/실을 먼저 선택하세요</option>';
+                    subDeptSelect.innerHTML = '<option value="">-- 본부/실을 먼저 선택하세요 --</option>';
                     subDeptSelect.disabled = true;
                 } else { 
                     throw new Error(data.message || 'Apps Script 내부 오류'); 
