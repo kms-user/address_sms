@@ -36,7 +36,7 @@
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
-            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%236c757d%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22/%3E%3C/svg%3E');
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%2h-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22/%3E%3C/svg%3E');
             background-repeat: no-repeat;
             background-position: right 1rem center;
             background-size: 0.7em auto;
@@ -142,7 +142,6 @@
 
         // --- (여기서부터는 특별한 경우가 아니면 수정하지 않아도 됩니다) ---
 
-        // ▼▼▼ 2단계 부서 선택을 위한 데이터 및 로직 ▼▼▼
         const departmentData = {
             '경영기획실': { options: ['마케팅팀', '재무팀', '인사팀', '총무팀', '감사팀'] },
             '기술E본부': {
@@ -194,14 +193,10 @@
                 subDeptSelect.disabled = false;
                 const data = departmentData[selectedMainDept];
 
-                // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
-                // ▼▼▼ 이 부분이 수정되었습니다 ▼▼▼
-
-                // 그룹이 있는 경우 (예: 기술1실)
                 if (data.groups) {
                     data.groups.forEach(group => {
                         const optgroup = document.createElement('optgroup');
-                        optgroup.label = group.label; // '--' 기호 제거
+                        optgroup.label = group.label;
                         group.options.forEach(optionText => {
                             optgroup.appendChild(new Option(optionText, optionText));
                         });
@@ -209,16 +204,11 @@
                     });
                 }
                 
-                // 그룹 없이 팀만 있는 경우
                 if (data.options) {
                     data.options.forEach(optionText => {
                         subDeptSelect.appendChild(new Option(optionText, optionText));
                     });
                 }
-
-                // ▲▲▲ 이 부분이 수정되었습니다 ▲▲▲
-                // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
-                
             } else {
                 subDeptSelect.innerHTML = '<option value="">본부/실을 먼저 선택하세요</option>';
                 subDeptSelect.disabled = true;
@@ -259,5 +249,3 @@
     </script>
 </body>
 </html>
-
-
