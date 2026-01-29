@@ -79,6 +79,7 @@
       -moz-appearance: none;
       appearance: none;
 
+      /* dropdown arrow */
       background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20viewBox%3D%270%200%20320%20512%27%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%3E%3Cpath%20fill%3D%27%23999%27%20d%3D%27M31.3%20192h257.4c28.4%200%2042.8%2034.5%2022.6%2054.6L182.6%20375.3c-12.5%2012.5-32.8%2012.5-45.3%200L8.7%20246.6C-11.5%20226.5%202.9%20192%2031.3%20192z%27/%3E%3C/svg%3E');
       background-repeat: no-repeat;
       background-position: right 1rem center;
@@ -152,6 +153,22 @@
     .submit-btn:hover:not(:disabled) { background-color: #061A2D; transform: translateY(-2px); }
     .submit-btn:disabled { background-color: #adb5bd; cursor: not-allowed; }
 
+    /* ✅ gift description box */
+    .gift-desc {
+      margin-top: 10px;
+      padding: 14px 16px;
+      background-color: #f9fafb;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: #495057;
+    }
+    .gift-desc strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #212529;
+    }
+
     @media (max-width: 768px) {
       body { padding: 10px; }
       .form-container { padding: 25px; }
@@ -170,8 +187,9 @@
     <h1>소만사 명절선물</h1>
 
     <form id="userInfoForm">
+      <!-- 신청자 정보 -->
       <div class="form-group">
-        <label for="nameInput">이름</label>
+        <label for="nameInput">이름(신청자)</label>
         <input type="text" id="nameInput" name="user_name" placeholder="실명을 입력해 주세요" required />
       </div>
 
@@ -198,34 +216,63 @@
       </div>
 
       <div class="form-group">
-        <label for="phoneInput">휴대전화</label>
-        <input type="tel" id="phoneInput" name="user_phone" placeholder="예: 010-1234-5678"
-               oninput="autoHyphen(this)" maxlength="13" required />
+        <label for="phoneInput">휴대전화(신청자)</label>
+        <input
+          type="tel"
+          id="phoneInput"
+          name="user_phone"
+          placeholder="예: 010-1234-5678"
+          oninput="autoHyphen(this)"
+          maxlength="13"
+          required
+        />
       </div>
 
-      <!-- ✅ 선물 선택 (추가) -->
+      <!-- ✅ 선물 선택 -->
       <div class="form-group">
         <label for="giftSelect">선물 선택</label>
         <select id="giftSelect" name="gift_choice" required>
           <option value="">선물을 선택해 주세요</option>
-          <option value="저탄소 사과·배 혼합">
-            저탄소 사과·배 혼합 - 11과 / 사과 1.8kg(6입), 배 3kg(5입)
-          </option>
-          <option value="프리미엄 레드향">
-            프리미엄 레드향 - 11~16입 / 4kg
-          </option>
-          <option value="한돈세트">
-            한돈세트 - 2kg / 삼겹·목심 각 500g × 2팩
-          </option>
-          <option value="영광굴비 세트">
-            영광굴비 세트 - 10미 / 총 1kg, 국산(법성포참맛영어조합법인)
-          </option>
-          <option value="완도 활전복">
-            완도 활전복 - 10미 내외 / 1.2kg(해초포장), 국산(해미원)
-          </option>
+          <option value="저탄소 사과·배 혼합">저탄소 사과·배 혼합</option>
+          <option value="프리미엄 레드향">프리미엄 레드향</option>
+          <option value="한돈세트">한돈세트</option>
+          <option value="영광굴비 세트">영광굴비 세트</option>
+          <option value="완도 활전복">완도 활전복</option>
         </select>
+
+        <!-- 구성 설명(선택 시 자동 표시) -->
+        <div id="giftDescription" class="gift-desc" style="display:none;">
+          <strong id="giftTitle"></strong>
+          <p id="giftDetail"></p>
+        </div>
       </div>
 
+      <!-- ✅ 받는사람 정보 (주소 위에 추가) -->
+      <div class="form-group">
+        <label for="receiverName">받는사람 성함</label>
+        <input
+          type="text"
+          id="receiverName"
+          name="receiver_name"
+          placeholder="예: 홍길동"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="receiverPhone">받는사람 연락처</label>
+        <input
+          type="tel"
+          id="receiverPhone"
+          name="receiver_phone"
+          placeholder="예: 010-1234-5678"
+          oninput="autoHyphen(this)"
+          maxlength="13"
+          required
+        />
+      </div>
+
+      <!-- 주소 -->
       <div class="form-group">
         <label>주소 (선물 발송용)</label>
         <div class="address-group">
@@ -242,6 +289,7 @@
         <input type="text" id="address2" name="address_detail" placeholder="상세 주소 (동, 호수 등)" required />
       </div>
 
+      <!-- 개인정보 동의 -->
       <div class="consent-group">
         <div class="check-item">
           <input type="checkbox" id="consentCheck" name="privacy_consent" required />
@@ -250,7 +298,10 @@
 
         <div class="consent-details">
           <h4>1. 수집하는 개인정보 항목</h4>
-          <p>이름, 부서, 연락처(휴대전화), 주소(우편번호, 기본주소, 상세주소), 선물 선택</p>
+          <p>
+            이름(신청자), 부서, 연락처(신청자), 선물 선택,
+            받는사람 성함/연락처, 주소(우편번호, 기본주소, 상세주소)
+          </p>
 
           <h4>2. 개인정보의 수집 및 이용 목적</h4>
           <p>명절 선물 발송 및 관련 안내</p>
@@ -272,6 +323,31 @@
       "https://script.google.com/macros/s/AKfycbw_SoflN_SYhfju8RoMEWZhS09MihxnqYU9jGiGw6Bcb-PPwlo_vbG9eysf7iovFYU2/exec";
     // ▲▲▲ (매우 중요) 구글 시트 연동 URL ▲▲▲
 
+    // ✅ 선물 구성 설명 데이터
+    const giftInfo = {
+      "저탄소 사과·배 혼합": {
+        title: "저탄소 사과·배 혼합",
+        desc: "11과 / 사과 1.8kg(6입), 배 3kg(5입)"
+      },
+      "프리미엄 레드향": {
+        title: "프리미엄 레드향",
+        desc: "11~16입 / 4kg"
+      },
+      "한돈세트": {
+        title: "한돈세트",
+        desc: "2kg / 삼겹·목심 각 500g × 2팩"
+      },
+      "영광굴비 세트": {
+        title: "영광굴비 세트",
+        desc: "10미 / 총 1kg, 국산 (법성포참맛영어조합법인)"
+      },
+      "완도 활전복": {
+        title: "완도 활전복",
+        desc: "10미 내외 / 1.2kg (해초포장), 국산 (해미원)"
+      }
+    };
+
+    // 부서 데이터
     const departmentData = {
       "경영기획실": { options: ["마케팅팀", "재무팀", "인사팀", "총무팀", "감사팀"] },
       "기술E본부": {
@@ -314,6 +390,7 @@
       "컨설팅본부": { options: ["컨설팅1실", "컨설팅2실"] }
     };
 
+    // --- 부서 셀렉트 로직 ---
     const mainDeptSelect = document.getElementById("dept_main");
     const subDeptSelect = document.getElementById("dept_sub");
 
@@ -347,6 +424,7 @@
       }
     });
 
+    // --- 주소 검색 ---
     function findAddress() {
       new daum.Postcode({
         oncomplete: function (data) {
@@ -357,6 +435,7 @@
       }).open();
     }
 
+    // --- 전화 하이픈 ---
     function autoHyphen(target) {
       target.value = target.value
         .replace(/[^0-9]/g, "")
@@ -364,6 +443,26 @@
         .replace(/(\-{1,2})$/g, "");
     }
 
+    // --- 선물 설명 표시 ---
+    const giftSelect = document.getElementById("giftSelect");
+    const giftBox = document.getElementById("giftDescription");
+    const giftTitle = document.getElementById("giftTitle");
+    const giftDetail = document.getElementById("giftDetail");
+
+    giftSelect.addEventListener("change", function () {
+      const value = this.value;
+
+      if (!giftInfo[value]) {
+        giftBox.style.display = "none";
+        return;
+      }
+
+      giftTitle.textContent = giftInfo[value].title;
+      giftDetail.textContent = giftInfo[value].desc;
+      giftBox.style.display = "block";
+    });
+
+    // --- 제출 로직 ---
     const userForm = document.getElementById("userInfoForm");
     const submitButton = userForm.querySelector(".submit-btn");
 
@@ -374,10 +473,7 @@
 
       const formData = new FormData(userForm);
 
-      fetch(GOOGLE_SCRIPT_URL, {
-        method: "POST",
-        body: formData
-      })
+      fetch(GOOGLE_SCRIPT_URL, { method: "POST", body: formData })
         .then((response) => {
           if (!response.ok) {
             throw new Error("서버 응답 오류 (Status: " + response.status + ")");
@@ -388,8 +484,13 @@
           if (data.result === "success") {
             alert("정상적으로 제출되었습니다. 감사합니다!");
             userForm.reset();
+
+            // 부서 하위 셀렉트 초기화
             subDeptSelect.innerHTML = '<option value="">본부/실을 먼저 선택하세요</option>';
             subDeptSelect.disabled = true;
+
+            // 선물 설명 박스 초기화
+            giftBox.style.display = "none";
           } else {
             throw new Error(data.message || "Apps Script 내부 오류");
           }
@@ -406,4 +507,3 @@
   </script>
 </body>
 </html>
-
